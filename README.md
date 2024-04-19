@@ -45,7 +45,7 @@ This project is built using the following technologies:
 
 - **Comprehensive Sections**: Includes Hero, About, Accommodation, Experience (with sub-sections for Activities and Amenities), Gallery, Testimonials, Footer, and a Reservation Form.
 - **Responsiveness**: Fully mobile-responsive design ensuring optimal user experience on all devices.
-- **Modern Design Trends**: Features contemporary design elements like bento grids that enhance visual appeal.
+- **Modern Design Trends**: Features contemporary design elements like parallax hero section and footer & bento grids that enhance visual appeal.
 - **Reservation Confirmation**: Automated email confirmations to secure and confirm reservations.
 
 ## 🚀 Quick Start
