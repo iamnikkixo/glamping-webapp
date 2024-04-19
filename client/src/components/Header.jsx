@@ -58,7 +58,7 @@ const Header = () => {
                   item.url === pathname.hash
                     ? 'z-2 lg:text-orange-500'
                     : 'text-white'
-                } lg:leading-5 xl:px-12`}
+                }  xl:px-6`}
               >
                 {item.title}
               </a>

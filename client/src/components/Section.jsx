@@ -4,13 +4,14 @@ const Section = ({
   customPaddings,
   children,
   backgroundImage,
-  height
+  height,
 }) => {
   const sectionStyle = {
     backgroundImage: `url(${backgroundImage})`,
+    backgroundAttachment: 'fixed', // parallax effect
     backgroundSize: 'cover',
     backgroundPosition: 'center',
-    height: `${height ? '100vh' : null}`,
+    height: `${height ? '100vh' : 'auto'}`,
   };
 
   return (
