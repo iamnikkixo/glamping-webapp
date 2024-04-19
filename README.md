@@ -1,4 +1,4 @@
-![Glamping Banner](banner.png)
+![Glamping Banner](banner-new.png)
 
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" width="50" style="margin-right: 5px;" />
@@ -26,10 +26,9 @@ This project is built with Node.js and uses Express for the backend. MongoDB is 
 
 ## 📖 Introduction
 
-Starlight Haven Glamping is a single page web application designed for glamping businesses catering to campers, or 'glampers,' who seek a luxurious camping experience in tents with facilities and amenities. 
+Starlight Haven Glamping is a single page web application designed for glamping businesses catering to campers, or 'glampers,' who seek a luxurious camping experience in tents with facilities and amenities.
 
 The web app is designed to be fully responsive, providing a seamless experience across devices like desktops, tablets, and smartphones. The layout and functionality adjust dynamically for optimal usability on any screen size.
-
 
 ## 🛠️ Tech Stacks
 
