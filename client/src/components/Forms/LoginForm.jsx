@@ -2,15 +2,30 @@ import { Formik, Form, Field } from 'formik';
 import TextField from '../../utils/Textfield';
 import loginSchema from '../../utils/loginSchema';
 import { useModal } from '../../utils/ModalContext';
+import { useAuth } from '../../utils/AuthContext';
 import axios from 'axios';
+
+const server = import.meta.env.VITE_BASE_URL;
 
 const LoginForm = () => {
   const { toggleModal } = useModal();
+  const { login } = useAuth();
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    resetForm();
-    toggleModal('loginModal');
+  const handleSubmit = async (values, { resetForm, setFieldError }) => {
+    try {
+      const response = await axios.post(`${server}/api/users/login`, values);
+      login(response.data.token);
+      resetForm();
+      toggleModal('loginModal');
+    } catch (error) {
+      console.error('Login error', error.message);
+      if (error.response && error.response.status === 401) {
+        const field = error.response.data.message.includes('Email')
+          ? 'email'
+          : 'password';
+        setFieldError(field, error.response.data.message);
+      }
+    }
   };
 
   return (
@@ -42,11 +57,7 @@ const LoginForm = () => {
             <div className="flex justify-between px-1 mt-1">
               <div>
                 <label className="inline-flex items-center">
-                  <Field
-                    type="checkbox"
-                    name="termsConditions"
-                    className="mr-3"
-                  />
+                  <Field type="checkbox" name="rememberMe" className="mr-3" />
                   <p className="text-xs">Remember me?</p>
                 </label>
               </div>

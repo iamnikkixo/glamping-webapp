@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { navigation } from '../constants';
 import MenuSvg from '../assets/svg/MenuSvg';
@@ -9,11 +9,14 @@ import FormModal from './Forms/FormModal';
 import RegisterForm from './Forms/RegisterForm';
 import LoginForm from './Forms/LoginForm';
 import { useModal } from '../utils/ModalContext';
+import { useAuth } from '../utils/AuthContext';
 
 const Header = () => {
   const pathname = useLocation();
   const [openNavigation, setOpenNavigation] = useState(false);
   const { toggleModal } = useModal();
+  const [image, setImage] = useState(null);
+  const { isAuthenticated, logout } = useAuth();
 
   const toggleNav = () => {
     if (openNavigation) {
@@ -30,6 +33,12 @@ const Header = () => {
 
     enablePageScroll();
     setOpenNavigation(false);
+  };
+
+  const handleLogout = () => {
+    console.log('logout');
+    logout();
+    setImage(null);
   };
 
   return (
@@ -69,19 +78,38 @@ const Header = () => {
               ))}
             </div>
           </nav>
-          <button
-            onClick={() => toggleModal('registerModal')}
-            className="uppercase font-medium text-sm text-white hidden lg:flex mr-5 hover:text-orange-500"
-          >
-            sign up
-          </button>
-          <Button
-            onClick={() => toggleModal('loginModal')}
-            px="px-8"
-            className="uppercase font-medium text-sm text-white hidden lg:flex"
-          >
-            Login
-          </Button>
+
+          {isAuthenticated ? (
+            image ? (
+              <img
+                src="https://images.pexels.com/photos/1520760/pexels-photo-1520760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                className="h-12 w-12 rounded-full"
+                alt="user image"
+                onClick={handleLogout}
+              />
+            ) : (
+              <i
+                className="fas fa-user bg-white rounded-full px-3 py-[6px] text-indigo-600 text-lg cursor-pointer"
+                onClick={handleLogout}
+              />
+            )
+          ) : (
+            <>
+              <button
+                onClick={() => toggleModal('registerModal')}
+                className="uppercase font-medium text-sm text-white hidden lg:flex mr-5 hover:text-orange-500"
+              >
+                sign up
+              </button>
+              <Button
+                onClick={() => toggleModal('loginModal')}
+                px="px-8"
+                className="uppercase font-medium text-sm text-white hidden lg:flex"
+              >
+                Login
+              </Button>
+            </>
+          )}
 
           <Button
             className="ml-auto lg:hidden white "
