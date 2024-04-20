@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import TextField from '../utils/Textfield';
-import Datefield from '../utils/Datefield';
-import { reservationSchema } from '../utils/reservationSchema';
-import { useModal } from '../utils/ModalContext';
+import TextField from '../../utils/Textfield';
+import Datefield from '../../utils/Datefield';
+import { reservationSchema } from '../../utils/reservationSchema';
+import { useModal } from '../../utils/ModalContext';
 import axios from 'axios';
 
 const server = import.meta.env.VITE_BASE_URL;
 
 const ReserveForm = () => {
-  const { isModalOpen, toggleModal } = useModal();
+  const { toggleModal } = useModal();
 
   const [tentType, setTentType] = useState('rustic');
 
@@ -17,7 +17,7 @@ const ReserveForm = () => {
     try {
       const response = await axios.post(`${server}/api/reservations`, values);
       resetForm();
-      toggleModal(false);
+      toggleModal('reserveModal');
       console.log('Succesfully submitted resservation,', values);
       return response.data;
     } catch (error) {
@@ -38,7 +38,7 @@ const ReserveForm = () => {
         termsConditions: false,
       }}
       onSubmit={handleSubmit}
-      validationSchema={reservationSchema}
+      //validationSchema={reservationSchema}
     >
       {({ setFieldValue }) => (
         <Form>

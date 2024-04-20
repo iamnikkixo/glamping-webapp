@@ -6,20 +6,28 @@ const ModalContext = createContext();
 export const useModal = () => useContext(ModalContext);
 
 export const ModalProvider = ({ children }) => {
-  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalState, setModalState] = useState({});
 
-  const toggleModal = () => {
-    if (isModalOpen) {
-      setModalOpen(false);
-      enablePageScroll();
-    } else {
-      setModalOpen(true);
-      disablePageScroll();
-    }
+  const toggleModal = (modalName) => {
+    setModalState((prevState) => {
+      const newState = {
+        ...prevState,
+        [modalName]: !prevState[modalName],
+      };
+
+      const isAnyModalOpen = Object.values(newState).some((state) => state);
+      if (isAnyModalOpen) {
+        disablePageScroll();
+      } else {
+        enablePageScroll();
+      }
+
+      return newState;
+    });
   };
 
   return (
-    <ModalContext.Provider value={{ isModalOpen, toggleModal }}>
+    <ModalContext.Provider value={{ modalState, toggleModal }}>
       {children}
     </ModalContext.Provider>
   );

@@ -21,7 +21,10 @@ const Hero = () => {
             Discover the beauty of the night under a star-studded sky in a
             luxury tent.
           </p>
-          <button onClick={toggleModal} className="btn-white">
+          <button
+            onClick={() => toggleModal('reserveModal')}
+            className="btn-white"
+          >
             Reserve Now
           </button>
         </div>

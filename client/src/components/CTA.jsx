@@ -15,7 +15,10 @@ const CTA = () => {
             Plan Your Glamp-tastic Getaway Today!
           </h2>
 
-          <button onClick={toggleModal} className="btn-white">
+          <button
+            onClick={() => toggleModal('reserveModal')}
+            className="btn-white"
+          >
             Reserve Now
           </button>
         </div>

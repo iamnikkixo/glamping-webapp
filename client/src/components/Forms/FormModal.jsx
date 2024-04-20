@@ -1,26 +1,25 @@
 import React from 'react';
-import { useModal } from '../utils/ModalContext';
-import ReserveForm from './ReserveForm';
+import { useModal } from '../../utils/ModalContext';
 
-const ReserveModal = () => {
-  const { isModalOpen, toggleModal } = useModal();
+const FormModal = ({ children, title, size, modalName }) => {
+  const { modalState, toggleModal } = useModal();
 
-  if (!isModalOpen) return null;
+  if (!modalState[modalName]) return null;
 
   return (
     <div
       className={`${
-        isModalOpen ? 'flex' : 'hidden'
+        modalState[modalName] ? 'flex' : 'hidden'
       } items-center justify-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 bg-gray-900 bg-opacity-50 font-poppins`}
     >
-      <div className="relative p-4 w-full max-w-2xl h-auto">
+      <div className={`relative p-4 h-auto ${size || 'w-full max-w-2xl'}`}>
         <div className="relative p-4 bg-white rounded-lg shadow sm:p-5">
           <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 ">
-            <h2 className="h2">Reserve Your Tent</h2>
+            <h2 className="h2">{title}</h2>
             <button
               type="button"
               className="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-              onClick={toggleModal}
+              onClick={() => toggleModal(modalName)}
             >
               <svg
                 className="w-5 h-5"
@@ -36,11 +35,11 @@ const ReserveModal = () => {
               </svg>
             </button>
           </div>
-          <ReserveForm />
+          {children}
         </div>
       </div>
     </div>
   );
 };
 
-export default ReserveModal;
+export default FormModal;

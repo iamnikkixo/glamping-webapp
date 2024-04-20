@@ -7,7 +7,8 @@ import Testimony from './components/Testimony/Testimony';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import { ModalProvider } from './utils/ModalContext';
-import ReserveModal from './components/ReserveModal';
+import FormModal from './components/Forms/FormModal';
+import ReserveForm from './components/Forms/ReserveForm';
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
       <Testimony />
       <CTA />
       <Footer />
-      <ReserveModal />
+      <FormModal title="Reserve Your Tent" modalName="reserveModal">
+        <ReserveForm />
+      </FormModal>
     </ModalProvider>
   );
 }
