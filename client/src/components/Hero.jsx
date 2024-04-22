@@ -2,9 +2,11 @@ import Section from './Section';
 import Header from './Header';
 import HeroImage from '../assets/images/starrynight.jpg';
 import { useModal } from '../utils/ModalContext';
+import { useAuth } from '../utils/AuthContext';
 
 const Hero = () => {
   const { toggleModal } = useModal();
+  const { isAuthenticated } = useAuth();
 
   return (
     <Section className="pt-[7rem]" id="hero" backgroundImage={HeroImage} height>
@@ -22,7 +24,11 @@ const Hero = () => {
             luxury tent.
           </p>
           <button
-            onClick={() => toggleModal('reserveModal')}
+            onClick={() =>
+              isAuthenticated
+                ? toggleModal('reserveModal')
+                : toggleModal('loginModal')
+            }
             className="btn-white"
           >
             Reserve Now

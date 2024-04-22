@@ -1,8 +1,10 @@
 import Section from './Section';
 import { useModal } from '../utils/ModalContext';
+import { useAuth } from '../utils/AuthContext';
 
 const CTA = () => {
   const { toggleModal } = useModal();
+  const { isAuthenticated } = useAuth();
 
   return (
     <Section className="px-10 lg:px-20 font-poppins text-white">
@@ -16,7 +18,11 @@ const CTA = () => {
           </h2>
 
           <button
-            onClick={() => toggleModal('reserveModal')}
+            onClick={() =>
+              isAuthenticated
+                ? toggleModal('reserveModal')
+                : toggleModal('loginModal')
+            }
             className="btn-white"
           >
             Reserve Now

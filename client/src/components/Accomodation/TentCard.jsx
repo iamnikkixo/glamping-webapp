@@ -1,10 +1,12 @@
 import '@fortawesome/fontawesome-free/css/all.css';
 import { useModal } from '../../utils/ModalContext';
+import { useAuth } from '../../utils/AuthContext';
 
 const TentCard = ({
   item: { name, image, details = [], description, amenities = [] },
 }) => {
   const { toggleModal } = useModal();
+  const { isAuthenticated } = useAuth();
 
   return (
     <div
@@ -32,7 +34,11 @@ const TentCard = ({
             <p className="lg:mt-5 text-gray-700">{description}</p>
             <div className="flex flex-row-reverse">
               <button
-                onClick={() => toggleModal('reserveModal')}
+                onClick={() =>
+                  isAuthenticated
+                    ? toggleModal('reserveModal')
+                    : toggleModal('loginModal')
+                }
                 className="mt-5 border-2 border-indigo-800 text-indigo-800 font-poppins font-medium py-3 px-5 rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-gradient-to-tr hover:from-indigo-800 hover:to-indigo-900 hover:text-white "
               >
                 Reserve Now

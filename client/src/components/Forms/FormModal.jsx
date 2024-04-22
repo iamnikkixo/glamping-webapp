@@ -12,7 +12,7 @@ const FormModal = ({ children, title, size, modalName }) => {
         modalState[modalName] ? 'flex' : 'hidden'
       } items-center justify-center overflow-x-hidden overflow-y-auto fixed inset-0 z-50 bg-gray-900 bg-opacity-50 font-poppins`}
     >
-      <div className={`relative p-4 h-auto ${size || 'w-full max-w-2xl'}`}>
+      <div className={`relative p-4 h-auto w-full ${size || 'max-w-2xl'}`}>
         <div className="relative p-4 bg-white rounded-lg shadow sm:p-5">
           <div className="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 ">
             <h2 className="h2">{title}</h2>

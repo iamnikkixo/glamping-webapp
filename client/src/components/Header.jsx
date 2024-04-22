@@ -122,14 +122,14 @@ const Header = () => {
       </div>
       <FormModal
         title="Create Your Account"
-        size="w-full max-w-lg"
+        size="max-w-lg"
         modalName="registerModal"
       >
         <RegisterForm />
       </FormModal>
       <FormModal
         title="Welcome Back"
-        size="w-full max-w-lg"
+        size="max-w-lg"
         modalName="loginModal"
       >
         <LoginForm />

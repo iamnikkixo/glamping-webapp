@@ -13,8 +13,8 @@ import ReserveForm from './components/Forms/ReserveForm';
 
 function App() {
   return (
-    <ModalProvider>
-      <AuthProvider>
+    <AuthProvider>
+      <ModalProvider>
         <div className="overflow-hidden">
           <Hero />
         </div>
@@ -28,8 +28,8 @@ function App() {
         <FormModal title="Reserve Your Tent" modalName="reserveModal">
           <ReserveForm />
         </FormModal>
-      </AuthProvider>
-    </ModalProvider>
+      </ModalProvider>
+    </AuthProvider>
   );
 }
 
