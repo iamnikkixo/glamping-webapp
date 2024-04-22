@@ -4,12 +4,14 @@ import TextField from '../../utils/Textfield';
 import Datefield from '../../utils/Datefield';
 import { reservationSchema } from '../../utils/reservationSchema';
 import { useModal } from '../../utils/ModalContext';
+import { useAuth } from '../../utils/AuthContext';
 import axios from 'axios';
 
 const server = import.meta.env.VITE_BASE_URL;
 
 const ReserveForm = () => {
   const { toggleModal } = useModal();
+  const { userEmail } = useAuth();
 
   const [tentType, setTentType] = useState('rustic');
 
@@ -30,7 +32,7 @@ const ReserveForm = () => {
       initialValues={{
         fullName: '',
         phone: '',
-        email: '',
+        email: userEmail,
         tent: 'rustic',
         checkIn: new Date(),
         checkOut: null,

@@ -14,17 +14,22 @@ const LoginForm = () => {
   const handleSubmit = async (values, { resetForm, setFieldError }) => {
     try {
       const response = await axios.post(`${server}/api/users/login`, values);
-      login(response.data.token);
+      const email = response.data.user ? response.data.user.email : undefined;
+      login(response.data.token, email);
       resetForm();
       toggleModal('loginModal');
       return response.data;
     } catch (error) {
-      console.error('Login error', error.message);
-      if (error.response && error.response.status === 401) {
-        const field = error.response.data.message.includes('Email')
-          ? 'email'
-          : 'password';
-        setFieldError(field, error.response.data.message);
+      console.error(error.message);
+      if (error.response && error.response.data) {
+        if (error.response.status === 401) {
+          const field = error.response.data.message.includes('Email')
+            ? 'email'
+            : 'password';
+          setFieldError(field, error.response.data.message);
+        } else if (!error.response.data.user) {
+          console.error('Login error: User data not returned from the server');
+        }
       }
     }
   };
@@ -38,7 +43,7 @@ const LoginForm = () => {
           rememberMe: false,
         }}
         onSubmit={handleSubmit}
-        //validationSchema={loginSchema}
+        validationSchema={loginSchema}
       >
         <Form>
           <div className="grid grid-cols-1 gap-2">
