@@ -2,16 +2,25 @@ import { Formik, Form, Field } from 'formik';
 import TextField from '../../utils/Textfield';
 import registerSchema from '../../utils/registerSchema';
 import { useModal } from '../../utils/ModalContext';
-
 import axios from 'axios';
+
+const server = import.meta.env.VITE_BASE_URL;
 
 const RegisterForm = () => {
   const { toggleModal } = useModal();
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log(values);
-    resetForm();
-    toggleModal('registerModal');
+  const handleSubmit = async (values, { resetForm, setFieldError }) => {
+    try {
+      const response = await axios.post(`${server}/api/users/register`, values);
+      resetForm();
+      toggleModal('registerModal');
+      console.log('Registration Successful!', values);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 409) {
+        setFieldError('email', error.response.data.message);
+      }
+    }
   };
 
   return (
@@ -24,7 +33,7 @@ const RegisterForm = () => {
           termsConditions: false,
         }}
         onSubmit={handleSubmit}
-        //validationSchema={registerSchema}
+        validationSchema={registerSchema}
       >
         <Form>
           <div className="grid grid-cols-1 gap-2">

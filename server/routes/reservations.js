@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Reservation = require('../models/reservation');
 const nodemailer = require('nodemailer');
+const authenticate = require('../authenticate');
 
 function formatDate(date) {
   return new Date(date).toLocaleDateString('en-US', {
@@ -13,7 +14,7 @@ function formatDate(date) {
 }
 
 // post
-router.post('/', async (req, res) => {
+router.post('/', authenticate.verifyUser, async (req, res) => {
   const reservation = new Reservation({
     fullName: req.body.fullName,
     email: req.body.email,

@@ -17,6 +17,7 @@ const LoginForm = () => {
       login(response.data.token);
       resetForm();
       toggleModal('loginModal');
+      return response.data;
     } catch (error) {
       console.error('Login error', error.message);
       if (error.response && error.response.status === 401) {
