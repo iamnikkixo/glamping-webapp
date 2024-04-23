@@ -3,6 +3,8 @@ import TextField from '../../utils/Textfield';
 import loginSchema from '../../utils/loginSchema';
 import { useModal } from '../../utils/ModalContext';
 import { useAuth } from '../../utils/AuthContext';
+import GoogleOAuth from '../auth/GoogleOAuth';
+import FacebookOAuth from '../auth/FacebookOAuth';
 import axios from 'axios';
 
 const server = import.meta.env.VITE_BASE_URL;
@@ -97,18 +99,8 @@ const LoginForm = () => {
         </Form>
       </Formik>
       <div className="mt-3 text-center py-1">
-        <button onClick={() => console.log('Facebook button pressed')}>
-          <i
-            className="fab fa-facebook text-blue-600 px-2 text-md"
-            style={{ fontSize: '30px' }}
-          />
-        </button>
-        <button onClick={() => console.log('Google button presed')}>
-          <i
-            className="fab fa-google text-red-600 px-2"
-            style={{ fontSize: '30px' }}
-          />
-        </button>
+        <FacebookOAuth />
+        <GoogleOAuth />
       </div>
     </div>
   );

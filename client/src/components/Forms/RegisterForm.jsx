@@ -2,6 +2,8 @@ import { Formik, Form, Field } from 'formik';
 import TextField from '../../utils/Textfield';
 import registerSchema from '../../utils/registerSchema';
 import { useModal } from '../../utils/ModalContext';
+import FacebookOAuth from '../auth/FacebookOAuth';
+import GoogleOAuth from '../auth/GoogleOAuth';
 import axios from 'axios';
 
 const server = import.meta.env.VITE_BASE_URL;
@@ -104,18 +106,8 @@ const RegisterForm = () => {
         </Form>
       </Formik>
       <div className="mt-3 text-center py-1">
-        <button onClick={() => console.log('Facebook button pressed')}>
-          <i
-            className="fab fa-facebook text-blue-600 px-2 text-md"
-            style={{ fontSize: '30px' }}
-          />
-        </button>
-        <button onClick={() => console.log('Google button presed')}>
-          <i
-            className="fab fa-google text-red-600 px-2"
-            style={{ fontSize: '30px' }}
-          />
-        </button>
+        <FacebookOAuth />
+        <GoogleOAuth />
       </div>
     </div>
   );

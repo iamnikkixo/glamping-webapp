@@ -11,7 +11,7 @@ const server = import.meta.env.VITE_BASE_URL;
 
 const ReserveForm = () => {
   const { toggleModal } = useModal();
-  const { userEmail } = useAuth();
+  const { userEmail, userName } = useAuth();
 
   const [tentType, setTentType] = useState('rustic');
 
@@ -30,7 +30,7 @@ const ReserveForm = () => {
   return (
     <Formik
       initialValues={{
-        fullName: '',
+        fullName: userName,
         phone: '',
         email: userEmail,
         tent: 'rustic',

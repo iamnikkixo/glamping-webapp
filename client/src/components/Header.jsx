@@ -15,8 +15,7 @@ const Header = () => {
   const pathname = useLocation();
   const [openNavigation, setOpenNavigation] = useState(false);
   const { toggleModal } = useModal();
-  const [image, setImage] = useState(null);
-  const { isAuthenticated, logout } = useAuth();
+  const { isAuthenticated, logout, userPicture } = useAuth();
 
   const toggleNav = () => {
     if (openNavigation) {
@@ -36,9 +35,7 @@ const Header = () => {
   };
 
   const handleLogout = () => {
-    console.log('logout');
     logout();
-    setImage(null);
   };
 
   return (
@@ -80,9 +77,9 @@ const Header = () => {
           </nav>
 
           {isAuthenticated ? (
-            image ? (
+            userPicture ? (
               <img
-                src="https://images.pexels.com/photos/1520760/pexels-photo-1520760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+                src={userPicture}
                 className="h-12 w-12 rounded-full"
                 alt="user image"
                 onClick={handleLogout}
@@ -127,11 +124,7 @@ const Header = () => {
       >
         <RegisterForm />
       </FormModal>
-      <FormModal
-        title="Welcome Back"
-        size="max-w-lg"
-        modalName="loginModal"
-      >
+      <FormModal title="Welcome Back" size="max-w-lg" modalName="loginModal">
         <LoginForm />
       </FormModal>
     </>
