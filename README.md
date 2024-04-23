@@ -1,4 +1,4 @@
-![Glamping Banner](banner-new.png)
+![Glamping Banner](new-banner.png)
 
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" width="50" style="margin-right: 5px;" />

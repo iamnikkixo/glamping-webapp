@@ -5,6 +5,7 @@ const User = require('./models/user');
 const jwt = require('jsonwebtoken');
 const JwtStrategy = require('passport-jwt').Strategy;
 const ExtractJwt = require('passport-jwt').ExtractJwt;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
 passport.use(
   new LocalStrategy(
@@ -53,5 +54,44 @@ passport.use(
     }
   })
 );
+
+// google auth
+/* passport.use(
+  new GoogleStrategy(
+    {
+      clientID: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      callbackURL: 'http://localhost:3000/api/users/auth/google/callback',
+      session: false,
+    },
+    async (accessToken, refreshToken, profile, cb) => {
+      try {
+        let user = await User.findOne({
+          $or: [{ googleId: profile.id }, { email: profile.emails[0].value }],
+        });
+
+        if (!user) {
+          user = await User.create({
+            googleId: profile.id,
+            email: profile.emails[0].value,
+            name: `${profile.name.givenName} ${profile.name.familyName}`,
+            picture: profile.photos[0].value,
+          });
+        } else {
+          // Update googleId if it doesn't exist
+          if (!user.googleId) {
+            user.googleId = profile.id;
+            user.picture = profile.photos[0].value; // Update picture as well, if needed
+            await user.save();
+          }
+        }
+
+        return cb(null, user);
+      } catch (err) {
+        return cb(err, null);
+      }
+    }
+  )
+); */
 
 exports.verifyUser = passport.authenticate('jwt', { session: false });

@@ -26,16 +26,32 @@ router.post('/login', (req, res, next) => {
     if (!user) {
       return res.status(401).json(info);
     }
-    req.logIn(user, { session: false }, (err) => {
-      if (err) {
-        return res.status(500).json({ message: err.message });
-      }
-      const token = authenticate.getToken({ _id: user._id });
-      return res
-        .status(200)
-        .json({ token: token, message: 'Logged in successfully!', user: user });
-    });
+    const token = authenticate.getToken({ _id: user._id });
+    return res
+      .status(200)
+      .json({ token: token, message: 'Logged in successfully!', user: user });
   })(req, res, next);
 });
 
+/* router.get(
+  '/auth/google',
+  passport.authenticate('google', { scope: ['email', 'profile'] })
+);
+
+router.get(
+  '/auth/google/callback',
+  passport.authenticate('google', {
+    failureRedirect: '/',
+    session: false,
+  }),
+  function (req, res) {
+    if (req.user) {
+      const token = authenticate.getToken({ _id: req.user._id });
+      res.redirect(`http://localhost:5173/`);
+    } else {
+      res.status(401).json({ message: 'Authentication failed' });
+    }
+  }
+);
+ */
 module.exports = router;
