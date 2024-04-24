@@ -85,12 +85,12 @@ This project is built using the following technologies:
 
 - **Path:** `api/reservations`
 - **Method:** `POST`
-- **Description:**
-  This endpoint allows clients to make reservations for a tent. It captures the reservation details.
-- **Request Body:**
-  Includes fields: fullName, email, phone, tent, numGuest, checkIn, checkOut.
-- **Response:**
-  Returns a booking confirmation message and sends an email to both the client and the business.
+- **Description:** Handles reservations for tents, including capturing reservation details and sending confirmation emails.
+
+### Users Endpoint
+
+- **Path:** `api/users`
+- **Description:** Manages user registration, login, and authentication including support for Google OAuth.
 
 ## 🎨 UX/UI Design
 
