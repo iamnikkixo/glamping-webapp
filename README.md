@@ -44,7 +44,11 @@ This project is built using the following technologies:
 
 - **Comprehensive Sections**: Includes Hero, About, Accommodation, Experience (with sub-sections for Activities and Amenities), Gallery, Testimonials, Footer, and a Reservation Form.
 - **Responsiveness**: Fully mobile-responsive design ensuring optimal user experience on all devices.
+- **Secure Authentication**:
+  - Registration and login functionality using JWT tokens with local Passport strategy.
+  - Google authentication for convenient and secure user sign-in.
 - **Modern Design Trends**: Features contemporary design elements like parallax hero section and footer & bento grids that enhance visual appeal.
+- **Smart Reservation Form**: Automatically fills out parts of the reservation form with user information retained after login, streamlining the booking process.
 - **Reservation Confirmation**: Automated email confirmations to secure and confirm reservations.
 
 ## 🚀 Quick Start
@@ -61,12 +65,17 @@ This project is built using the following technologies:
    Server:
 
    - `MONGODB_URL=`
+   - `CLIENT_URL =`
    - `MAIL_HOST=`
    - `MAIL_PORT=`
    - `MAIL_SECURE=`
    - `MAIL_USERNAME=`
    - `MAIL_PASSWORD=`
    - `MAIL_FROM=`
+   - `SECRET_KEY=`
+   - `GOOGLE_CLIENT_ID=`
+   - `GOOGLE_CLIENT_SECRET=`
+   - `GOOGLE_CALLBACK_URL=`
 
 5. Start the client and server with `npm run dev`.
 

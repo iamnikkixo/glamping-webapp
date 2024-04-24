@@ -16,8 +16,8 @@ const LoginForm = () => {
   const handleSubmit = async (values, { resetForm, setFieldError }) => {
     try {
       const response = await axios.post(`${server}/api/users/login`, values);
-      const email = response.data.user ? response.data.user.email : undefined;
-      login(response.data.token, email);
+      login(response.data);
+      console.log(response.data)
       resetForm();
       toggleModal('loginModal');
       return response.data;

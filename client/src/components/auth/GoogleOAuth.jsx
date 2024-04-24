@@ -2,8 +2,7 @@ const server = import.meta.env.VITE_BASE_URL;
 
 const GoogleOAuth = () => {
   const handleLogin = () => {
-    console.log('Google authentication');
-    //window.location.href = `${server}/api/users/auth/google`;
+    window.location.href = `${server}/api/users/auth/google/`;
   };
 
   return (

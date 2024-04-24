@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import About from './components/About';
 import Accomodation from './components/Accomodation/Accomodation';
@@ -11,9 +12,8 @@ import { AuthProvider } from './utils/AuthContext';
 import FormModal from './components/Forms/FormModal';
 import ReserveForm from './components/Forms/ReserveForm';
 
-function App() {
 
-  
+function App() {
   return (
     <AuthProvider>
       <ModalProvider>

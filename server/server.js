@@ -4,6 +4,7 @@ const app = express();
 const cors = require('cors');
 const mongoose = require('mongoose');
 const passport = require('passport');
+const session = require('express-session');
 
 // connect to db
 mongoose.connect(process.env.MONGODB_URL);
@@ -17,10 +18,28 @@ db.once('open', async () => {
 app.use(express.json());
 
 // cors
-app.use(cors());
+app.use(
+  cors({
+    origin: 'http://localhost:5173',
+    methods: 'GET, POST, PUT, DELETE',
+    credentials: true,
+    allowedHeaders: ['Content-Type', 'Authorization'],
+  })
+);
+
+// sessions
+app.use(
+  session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+  })
+);
 
 // passport configuration
 app.use(passport.initialize());
+app.use(passport.session());
 
 // routes
 const reservationsRouter = require('./routes/reservations');

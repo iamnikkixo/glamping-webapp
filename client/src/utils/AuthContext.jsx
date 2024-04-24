@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const AuthContext = createContext();
+const server = import.meta.env.VITE_BASE_URL;
 
 export const useAuth = () => useContext(AuthContext);
 
@@ -11,28 +13,58 @@ export const AuthProvider = ({ children }) => {
   const [userPicture, setUserPicture] = useState('');
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    const email = localStorage.getItem('email');
-    const name = localStorage.getItem('name');
-    const picture = localStorage.getItem('picture');
+    const getUser = async () => {
+      try {
+        const response = await axios.get(`${server}/api/users/login/success`, {
+          withCredentials: true,
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        });
 
-    if (token) {
-      setIsAuthenticated(true);
-      setUserEmail(email);
-      setUserName(name);
-      setUserPicture(picture);
-    }
+        if (response.status === 200 && response.data.user) {
+          login(response.data.user);
+        } else {
+          throw new Error('Authentication has failed!');
+        }
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
+    getUser();
   }, []);
 
-  const login = ({ token, email, name, picture }) => {
-    localStorage.setItem('token', token);
+  const login = (user) => {
+    let email = '';
+    let displayName = '';
+    let picture = '';
+    let token = '';
+    console.log('user', user);
+
+    if (user.token) {
+      token = user.token;
+      email = user.user.email;
+    } else {
+      email = user.emails[0].value;
+      displayName = user.displayName;
+      picture = user.photos[0].value;
+    }
+
+    // Set token if available
+    if (token) {
+      localStorage.setItem('token', token);
+    }
+
+    // Store user details in local storage
     localStorage.setItem('email', email);
-    localStorage.setItem('name', name);
+    localStorage.setItem('name', displayName);
     localStorage.setItem('picture', picture);
 
     setIsAuthenticated(true);
     setUserEmail(email);
-    setUserName(name);
+    setUserName(displayName);
     setUserPicture(picture);
   };
 

@@ -11,7 +11,7 @@ const server = import.meta.env.VITE_BASE_URL;
 
 const ReserveForm = () => {
   const { toggleModal } = useModal();
-  const { userEmail, userName } = useAuth();
+  const { userName, userEmail } = useAuth();
 
   const [tentType, setTentType] = useState('rustic');
 

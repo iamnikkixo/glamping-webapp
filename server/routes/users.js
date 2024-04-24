@@ -33,7 +33,28 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-/* router.get(
+router.get('/login/failed', (req, res) => {
+  res.status(401).json({ success: false, message: 'Login failed!' });
+});
+
+router.get('/login/success', (req, res) => {
+  if (req.user) {
+    res
+      .status(200)
+      .json({ success: true, message: 'Login succesful!', user: req.user });
+  }
+});
+
+router.get('/logout', (req, res) => {
+  req.logout((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect(process.env.CLIENT_URL);
+  });
+});
+
+router.get(
   '/auth/google',
   passport.authenticate('google', { scope: ['email', 'profile'] })
 );
@@ -41,17 +62,10 @@ router.post('/login', (req, res, next) => {
 router.get(
   '/auth/google/callback',
   passport.authenticate('google', {
-    failureRedirect: '/',
-    session: false,
-  }),
-  function (req, res) {
-    if (req.user) {
-      const token = authenticate.getToken({ _id: req.user._id });
-      res.redirect(`http://localhost:5173/`);
-    } else {
-      res.status(401).json({ message: 'Authentication failed' });
-    }
-  }
+    successRedirect: process.env.CLIENT_URL,
+    failureRedirect: '/login/failed',
+  })
 );
- */
+
+
 module.exports = router;

@@ -11,6 +11,8 @@ import LoginForm from './Forms/LoginForm';
 import { useModal } from '../utils/ModalContext';
 import { useAuth } from '../utils/AuthContext';
 
+const server = import.meta.env.VITE_BASE_URL;
+
 const Header = () => {
   const pathname = useLocation();
   const [openNavigation, setOpenNavigation] = useState(false);
@@ -36,6 +38,7 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
+    window.location.href = `${server}/api/users/logout`;
   };
 
   return (
