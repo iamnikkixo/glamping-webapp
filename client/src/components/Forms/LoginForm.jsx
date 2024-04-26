@@ -17,7 +17,6 @@ const LoginForm = () => {
     try {
       const response = await axios.post(`${server}/api/users/login`, values);
       login(response.data);
-      console.log(response.data)
       resetForm();
       toggleModal('loginModal');
       return response.data;

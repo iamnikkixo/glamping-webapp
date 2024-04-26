@@ -34,6 +34,10 @@ export const reservationSchema = Yup.object().shape({
       }
     ),
 
+  days: Yup.number(),
+
+  total: Yup.number(),
+
   tent: Yup.string()
     .required('Tent selection required')
     .oneOf(['rustic', 'oasis', 'zen'], 'Invalid tent selection'),

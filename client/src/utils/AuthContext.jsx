@@ -41,7 +41,6 @@ export const AuthProvider = ({ children }) => {
     let displayName = '';
     let picture = '';
     let token = '';
-    console.log('user', user);
 
     if (user.token) {
       token = user.token;

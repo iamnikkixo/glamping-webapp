@@ -2,12 +2,27 @@ import { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import TextField from '../../utils/Textfield';
 import Datefield from '../../utils/Datefield';
+import { differenceInCalendarDays } from 'date-fns';
 import { reservationSchema } from '../../utils/reservationSchema';
 import { useModal } from '../../utils/ModalContext';
 import { useAuth } from '../../utils/AuthContext';
 import axios from 'axios';
+import { loadStripe } from '@stripe/stripe-js/pure';
 
 const server = import.meta.env.VITE_BASE_URL;
+
+const tentPrices = {
+  rustic: 50,
+  oasis: 75,
+  zen: 150,
+};
+
+const calculateDaysAndTotal = (checkIn, checkOut, tent) => {
+  let days = differenceInCalendarDays(new Date(checkOut), new Date(checkIn));
+  days = days > 0 ? days : 1;
+  const total = days * tentPrices[tent];
+  return { days, total };
+};
 
 const ReserveForm = () => {
   const { toggleModal } = useModal();
@@ -15,14 +30,16 @@ const ReserveForm = () => {
 
   const [tentType, setTentType] = useState('rustic');
 
-  const handleSubmit = async (values, { resetForm }) => {
+  const handleSubmitReservation = async (values, { resetForm }) => {
     try {
       const response = await axios.post(`${server}/api/reservations`, values);
       resetForm();
       toggleModal('reserveModal');
       console.log('Succesfully submitted resservation,', values);
+
       return response.data;
     } catch (error) {
+      console.log(values);
       console.error('Error Submitting Reservation:', error.message);
     }
   };
@@ -36,13 +53,19 @@ const ReserveForm = () => {
         tent: 'rustic',
         checkIn: new Date(),
         checkOut: null,
+        days: '1',
         numGuest: '1',
+        total: '',
         termsConditions: false,
       }}
-      onSubmit={handleSubmit}
+      onSubmit={
+        currentForm === 'reservation'
+          ? handleSubmitReservation
+          : handlePaymentSubmission
+      }
       //validationSchema={reservationSchema}
     >
-      {({ setFieldValue }) => (
+      {({ setFieldValue, values }) => (
         <Form>
           <div className="grid gap-4 mb-4 grid-cols-4">
             <TextField
@@ -83,6 +106,13 @@ const ReserveForm = () => {
                 onChange={(e) => {
                   setTentType(e.target.value);
                   setFieldValue('tent', e.target.value);
+                  const { days, total } = calculateDaysAndTotal(
+                    values.checkIn,
+                    values.checkOut,
+                    e.target.value
+                  );
+                  setFieldValue('days', days);
+                  setFieldValue('total', total);
                 }}
               >
                 <option value="rustic">Rustic</option>
@@ -123,14 +153,14 @@ const ReserveForm = () => {
                 <span>Accept Terms & Conditions</span>
               </label>
             </div>
-            <div className="col-span-2">
-              <button
-                type="submit"
-                className="border-2 text-md font-medium py-2 px-8 rounded-xl bg-gradient-to-tr from-indigo-800 to-indigo-900 text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  "
-              >
-                Submit
-              </button>
-            </div>
+          </div>
+          <div className="col-span-2">
+            <button
+              type="submit"
+              className="border-2 text-md font-medium py-2 px-8 rounded-xl bg-gradient-to-tr from-indigo-800 to-indigo-900 text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  "
+            >
+              {currentForm === 'reservation' ? 'Next' : 'Confirm Payment'}
+            </button>
           </div>
         </Form>
       )}
