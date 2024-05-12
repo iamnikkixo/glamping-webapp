@@ -5,6 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
+const MemoryStore = require('memorystore')(session)
 
 // connect to db
 mongoose.connect(process.env.MONGODB_URL);
@@ -34,6 +35,9 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
   })
 );
 
