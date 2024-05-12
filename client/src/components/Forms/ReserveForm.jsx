@@ -7,7 +7,6 @@ import { reservationSchema } from '../../utils/reservationSchema';
 import { useModal } from '../../utils/ModalContext';
 import { useAuth } from '../../utils/AuthContext';
 import axios from 'axios';
-import { loadStripe } from '@stripe/stripe-js/pure';
 
 const server = import.meta.env.VITE_BASE_URL;
 
@@ -63,7 +62,7 @@ const ReserveForm = () => {
           ? handleSubmitReservation
           : handlePaymentSubmission
       }
-      //validationSchema={reservationSchema}
+      validationSchema={reservationSchema}
     >
       {({ setFieldValue, values }) => (
         <Form>
