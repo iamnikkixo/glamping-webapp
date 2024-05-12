@@ -40,11 +40,7 @@ app.use(
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
-    cookie: {
-      secure: true,
-      sameSite: 'none',
-      httpOnly: true,
-    },
+    cookie: { secure: false },
     store: new MemoryStore({
       checkPeriod: 86400000, // prune expired entries every 24h
     }),
