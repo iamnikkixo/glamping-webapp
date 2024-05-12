@@ -154,7 +154,7 @@ const ReserveForm = () => {
               type="submit"
               className="border-2 text-md font-medium py-2 px-8 rounded-xl bg-gradient-to-tr from-indigo-800 to-indigo-900 text-white transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110  "
             >
-              {currentForm === 'reservation' ? 'Next' : 'Confirm Payment'}
+              Reserve Now
             </button>
           </div>
         </Form>
