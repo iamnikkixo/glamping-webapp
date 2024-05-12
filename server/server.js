@@ -5,7 +5,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const passport = require('passport');
 const session = require('express-session');
-const MemoryStore = require('memorystore')(session)
+const MemoryStore = require('memorystore')(session);
 
 // connect to db
 mongoose.connect(process.env.MONGODB_URL);
@@ -18,10 +18,16 @@ db.once('open', async () => {
 // accept json
 app.use(express.json());
 
+const allowedOrigins = process.env.CORS_ADDITIONAL_ORIGIN
+  ? ['http://localhost:5173', process.env.CORS_ADDITIONAL_ORIGIN].filter(
+      Boolean
+    )
+  : ['http://localhost:5173'];
+
 // cors
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    origin: allowedOrigins,
     methods: 'GET, POST, PUT, DELETE',
     credentials: true,
     allowedHeaders: ['Content-Type', 'Authorization'],
@@ -36,7 +42,7 @@ app.use(
     saveUninitialized: true,
     cookie: { secure: false },
     store: new MemoryStore({
-      checkPeriod: 86400000 // prune expired entries every 24h
+      checkPeriod: 86400000, // prune expired entries every 24h
     }),
   })
 );
