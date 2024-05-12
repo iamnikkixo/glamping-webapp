@@ -42,7 +42,9 @@ app.use(
     saveUninitialized: true,
     cookie: {
       secure: false,
+      httpOnly: true,
       sameSite: 'None',
+      maxAge: 24 * 60 * 60 * 1000, // 24 hours
     },
     store: new MemoryStore({
       checkPeriod: 86400000, // prune expired entries every 24h
