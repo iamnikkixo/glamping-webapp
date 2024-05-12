@@ -39,9 +39,13 @@ router.get('/login/failed', (req, res) => {
 
 router.get('/login/success', (req, res) => {
   if (req.user) {
-    res
-      .status(200)
-      .json({ success: true, message: 'Login succesful!', user: req.user });
+    console.log('Cookies on success:', req.headers.cookie);
+    console.log('Session data on success:', req.session);
+    res.status(200).json({
+      success: true,
+      message: 'Login successful!',
+      user: req.user
+    });
   }
 });
 

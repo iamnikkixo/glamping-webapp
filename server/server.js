@@ -56,6 +56,14 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
+// can delete
+// Middleware to log session and cookies at every request
+app.use((req, res, next) => {
+  console.log('Session:', req.session);
+  console.log('Cookies:', req.headers.cookie); // Logging the raw cookie string from headers
+  next();
+});
+
 // routes
 const reservationsRouter = require('./routes/reservations');
 const usersRouter = require('./routes/users');
