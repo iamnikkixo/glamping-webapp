@@ -57,11 +57,7 @@ const ReserveForm = () => {
         total: '',
         termsConditions: false,
       }}
-      onSubmit={
-        currentForm === 'reservation'
-          ? handleSubmitReservation
-          : handlePaymentSubmission
-      }
+      onSubmit={handleSubmitReservation}
       validationSchema={reservationSchema}
     >
       {({ setFieldValue, values }) => (
