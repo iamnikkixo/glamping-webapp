@@ -24,7 +24,6 @@ export const AuthProvider = ({ children }) => {
         });
 
         if (response.status === 200 && response.data.user) {
-          console.log(response.data.user);
           login(response.data.user);
         } else {
           throw new Error('Authentication has failed!');
