@@ -41,7 +41,7 @@ app.use(
     resave: false,
     saveUninitialized: true,
     cookie: {
-      secure: false,
+      secure: true,
       httpOnly: true,
       sameSite: 'None',
       maxAge: 24 * 60 * 60 * 1000, // 24 hours
@@ -55,14 +55,6 @@ app.use(
 // passport configuration
 app.use(passport.initialize());
 app.use(passport.session());
-
-// can delete
-// Middleware to log session and cookies at every request
-app.use((req, res, next) => {
-  console.log('Session:', req.session);
-  console.log('Cookies:', req.headers.cookie); // Logging the raw cookie string from headers
-  next();
-});
 
 // routes
 const reservationsRouter = require('./routes/reservations');
