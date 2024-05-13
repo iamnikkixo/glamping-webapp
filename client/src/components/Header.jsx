@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { navigation } from '../constants';
 import MenuSvg from '../assets/svg/MenuSvg';
@@ -84,13 +84,13 @@ const Header = () => {
             userPicture ? (
               <img
                 src={userPicture}
-                className="h-12 w-12 rounded-full"
+                className="h-12 w-12 rounded-full hidden lg:flex"
                 alt="user image"
                 onClick={handleLogout}
               />
             ) : (
               <i
-                className="fas fa-user bg-white rounded-full px-3 py-[6px] text-indigo-600 text-lg cursor-pointer"
+                className="fas fa-user bg-white rounded-full px-3 py-[6px] text-indigo-600 text-lg cursor-pointer  hidden lg:flex"
                 onClick={handleLogout}
               />
             )
