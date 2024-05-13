@@ -84,13 +84,13 @@ const Header = () => {
             userPicture ? (
               <img
                 src={userPicture}
-                className="h-12 w-12 rounded-full hidden lg:flex"
+                className="h-12 w-12 rounded-full hidden lg:flex ml-[85px]"
                 alt="user image"
                 onClick={handleLogout}
               />
             ) : (
               <i
-                className="fas fa-user bg-white rounded-full px-3 py-[6px] text-indigo-600 text-lg cursor-pointer  hidden lg:flex"
+                className="fas fa-user bg-white rounded-full px-3 py-[6px] text-indigo-600 text-lg cursor-pointer hidden lg:flex ml-[85px] "
                 onClick={handleLogout}
               />
             )
