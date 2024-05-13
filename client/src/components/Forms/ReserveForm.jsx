@@ -24,16 +24,17 @@ const calculateDaysAndTotal = (checkIn, checkOut, tent) => {
 };
 
 const ReserveForm = () => {
-  const { toggleModal } = useModal();
+  const { toggleModal, modalState } = useModal();
+  console.log('Reserve Form Name', modalState.tentName);
   const { userName, userEmail } = useAuth();
 
-  const [tentType, setTentType] = useState('rustic');
+  const [tentType, setTentType] = useState(modalState.tentName);
 
   const handleSubmitReservation = async (values, { resetForm }) => {
     try {
       const response = await axios.post(`${server}/api/reservations`, values);
       resetForm();
-      toggleModal('reserveModal');
+      toggleModal('reserveModal', null);
 
       return response.data;
     } catch (error) {
@@ -48,7 +49,7 @@ const ReserveForm = () => {
         fullName: userName,
         phone: '',
         email: userEmail,
-        tent: 'rustic',
+        tent: tentType,
         checkIn: new Date(),
         checkOut: null,
         days: '1',

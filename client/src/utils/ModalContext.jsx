@@ -8,11 +8,12 @@ export const useModal = () => useContext(ModalContext);
 export const ModalProvider = ({ children }) => {
   const [modalState, setModalState] = useState({});
 
-  const toggleModal = (modalName) => {
+  const toggleModal = (modalName, name) => {
     setModalState((prevState) => {
       const newState = {
         ...prevState,
         [modalName]: !prevState[modalName],
+        tentName: name ? name.toLowerCase() : '',
       };
 
       const isAnyModalOpen = Object.values(newState).some((state) => state);
