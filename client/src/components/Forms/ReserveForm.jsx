@@ -25,7 +25,6 @@ const calculateDaysAndTotal = (checkIn, checkOut, tent) => {
 
 const ReserveForm = () => {
   const { toggleModal, modalState } = useModal();
-  console.log('Reserve Form Name', modalState.tentName);
   const { userName, userEmail } = useAuth();
 
   const [tentType, setTentType] = useState(modalState.tentName);

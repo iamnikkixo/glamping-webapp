@@ -1,10 +1,18 @@
 import * as Yup from 'yup';
 import { startOfDay, addDays } from 'date-fns';
 
+const fullNameRegex = /^[A-Za-z]+ [A-Za-z]+$/;
+
 export const reservationSchema = Yup.object().shape({
   fullName: Yup.string()
     .required('Full name required')
-    .min(2, 'Must be at least 2 characters'),
+    .min(4, 'Must be at least 4 characters')
+    .matches(fullNameRegex, 'first name & last name required')
+    .test(
+      'trim', // Name of the test
+      'Remove space before name', // Error message
+      (value) => !value || (value[0] !== ' ' && value[value.length - 1] !== ' ')
+    ),
 
   phone: Yup.string()
     .required('Phone number required')
