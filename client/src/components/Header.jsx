@@ -68,7 +68,7 @@ const Header = () => {
                   href={item.url}
                   aria-label={item.title}
                   onClick={handleClick}
-                  className={`block relative font-poppins uppercase text-white transition-colors text-sm font-medium hover:text-orange-500 px-6 py-6 md:py-8 lg:-mr-0.25 ${
+                  className={`block relative font-poppins uppercase text-white transition-colors text-sm font-medium hover:text-orange-500  px-6 py-6 md:py-8 lg:-mr-0.25 hover:text-glow ${
                     item.url === pathname.hash
                       ? 'z-2 lg:text-orange-500'
                       : 'text-white'

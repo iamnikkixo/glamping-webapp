@@ -15,7 +15,7 @@ const Hero = () => {
         <div className="relative z-1 max-w-[62rem] mx-auto text-center mb-[4rem] md:mb-20 lg:mb-[6rem]">
           <h1 className="font-poppins font-semibold uppercase text-4xl leading-9 md:text-5xl md:leading-[3.25rem] lg:text-6xl lg:leading-[4rem] text-white">
             Experience the Wilderness in Comfort at{' '}
-            <span className="inline relative text-transparent bg-clip-text bg-gradient-to-tr from-orange-300 to-orange-500 ">
+            <span className="inline relative text-transparent bg-clip-text bg-gradient-to-tr from-orange-300 to-orange-500 font-bold">
               Starlight Haven Glamping
             </span>
           </h1>

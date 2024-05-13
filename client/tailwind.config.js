@@ -42,6 +42,9 @@ export default {
           '@apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 focus:outline-none focus:border-orange-500 focus:ring-1 focus:ring-orange-500':
             {},
         },
+        '.text-glow': {
+          textShadow: 'white 2px 2px 15px;',
+        },
       });
     }),
   ],
