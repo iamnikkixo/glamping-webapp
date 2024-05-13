@@ -34,7 +34,6 @@ const ReserveForm = () => {
       const response = await axios.post(`${server}/api/reservations`, values);
       resetForm();
       toggleModal('reserveModal');
-      console.log('Succesfully submitted resservation,', values);
 
       return response.data;
     } catch (error) {
