@@ -7,7 +7,7 @@ export const reservationSchema = Yup.object().shape({
   fullName: Yup.string()
     .required('Full name required')
     .min(4, 'Must be at least 4 characters')
-    .matches(fullNameRegex, 'first name & last name required')
+    .matches(fullNameRegex, 'First name & Last name required')
     .test(
       'trim', // Name of the test
       'Remove space before name', // Error message
