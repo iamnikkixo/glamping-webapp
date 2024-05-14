@@ -91,12 +91,13 @@ const RegisterForm = () => {
                 <p className="text-xs">
                   By signing up, you are creating a Starlight Haven account, and
                   you agree to Starlight Haven’s{' '}
-                  <span className="text-orange-500 font-semibold">
-                    Terms of Use
-                  </span>{' '}
-                  and{' '}
-                  <span className="text-orange-500 font-semibold">
-                    Privacy Policy
+                  <span
+                    onClick={() => (
+                      toggleModal('registerModal'), toggleModal('termsOfUse')
+                    )}
+                    className="text-orange-500 font-semibold hover:cursor-pointer"
+                  >
+                    Terms and Conditions
                   </span>
                   .
                 </p>

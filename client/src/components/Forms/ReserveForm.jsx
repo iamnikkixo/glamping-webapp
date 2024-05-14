@@ -169,8 +169,13 @@ const ReserveForm = () => {
                     name="termsConditions"
                     className="mr-2"
                   />
-                  <span>Accept Terms & Conditions</span>
                 </label>
+                <span
+                  onClick={() => toggleModal('reserveModal', null)}
+                  className="hover:text-orange-500 hover:cursor-pointer hover:font-semibold"
+                >
+                  Accept Terms & Conditions
+                </span>
                 <ErrorMessage
                   name="termsConditions"
                   component="div"

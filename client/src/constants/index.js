@@ -526,3 +526,48 @@ export const socials = [
     href: 'https://github.com/iamnikkixo',
   },
 ];
+
+export const termsAndConditions = [
+  {
+    id: '0',
+    title: 'Account Creation and Membership',
+    content:
+      'By creating an account at Starlight Haven, you agree to provide accurate and complete information. You are responsible for maintaining the confidentiality of your account details and for all activities that occur under your account. Starlight Haven reserves the right to terminate accounts, remove or edit content, or cancel memberships at any time without prior notice, particularly in cases of your breach of these terms, suspected unauthorized or fraudulent activity. Continued use of your account will constitute your acceptance of any changes or revisions to our policies.',
+  },
+  {
+    id: '1',
+    title: 'Booking and Payment',
+    content:
+      'All bookings are subject to availability. A deposit of 50% of the total booking amount is required to secure your reservation. The remaining balance must be paid at least 14 days prior to your check-in date. We accept payment via credit/debit card or bank transfer.',
+  },
+  {
+    id: '2',
+    title: 'Cancellation and Refunds',
+    content:
+      'Cancellations made more than 30 days before the check-in date will receive a full refund minus a 10% administrative fee. Cancellations made between 14-30 days before the check-in date will receive a 50% refund. Cancellations made less than 14 days before the check-in date are non-refundable.',
+  },
+  {
+    id: '3',
+    title: 'Check-in and Check-out',
+    content:
+      'Check-in time is from 10:00 AM onwards, and check-out time is by 11:00 AM. Early check-in or late check-out may be available upon request, subject to availability and additional charges.',
+  },
+  {
+    id: '4',
+    title: 'Property Rules',
+    content:
+      'Smoking is strictly prohibited inside the glamping tents and communal areas. Pets are not allowed unless prior approval has been obtained. Quiet hours are from 10:00 PM to 7:00 AM to ensure a peaceful environment for all guests.',
+  },
+  {
+    id: '5',
+    title: 'Damages and Liability',
+    content:
+      'Guests are responsible for any damages caused to the property or its amenities during their stay. Starlight Haven is not liable for any loss of personal belongings or injuries sustained during the stay.',
+  },
+  {
+    id: '6',
+    title: 'Privacy Policy',
+    content:
+      'We respect your privacy and will only use your personal information for booking purposes and to improve our services. Your information will not be shared with third parties without your consent.',
+  },
+];

@@ -8,6 +8,7 @@ import Logo from '../assets/images/logo-white.svg';
 import FormModal from './Forms/FormModal';
 import RegisterForm from './Forms/RegisterForm';
 import LoginForm from './Forms/LoginForm';
+import TermsConditions from './Forms/TermsConditions';
 import { useModal } from '../utils/ModalContext';
 import { useAuth } from '../utils/AuthContext';
 import { Tooltip } from 'react-tooltip';
@@ -148,6 +149,9 @@ const Header = () => {
       </FormModal>
       <FormModal title="Welcome Back" size="max-w-lg" modalName="loginModal">
         <LoginForm />
+      </FormModal>
+      <FormModal title="Terms of Use" size="max-w-5xl" modalName="termsOfUse">
+        <TermsConditions />
       </FormModal>
     </>
   );
