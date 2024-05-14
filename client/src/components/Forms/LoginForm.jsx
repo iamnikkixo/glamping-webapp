@@ -7,6 +7,7 @@ import { useAuth } from '../../utils/AuthContext';
 import GoogleOAuth from '../auth/GoogleOAuth';
 import FacebookOAuth from '../auth/FacebookOAuth';
 import axios from 'axios';
+import toast, { Toaster } from 'react-hot-toast';
 
 const server = import.meta.env.VITE_BASE_URL;
 
@@ -21,8 +22,18 @@ const LoginForm = () => {
       const response = await axios.post(`${server}/api/users/login`, values);
       login(response.data);
       resetForm();
-      toggleModal('loginModal');
       setIsSubmitting(false);
+      toast.success('Login Successfully!', {
+        style: {
+          borderRadius: '5px',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+      setTimeout(() => {
+        toggleModal('loginModal');
+      }, 1000);
+
       return response.data;
     } catch (error) {
       console.error(error.message);
@@ -33,6 +44,13 @@ const LoginForm = () => {
             ? 'email'
             : 'password';
           setFieldError(field, error.response.data.message);
+          toast.error(error.response.data.message, {
+            style: {
+              borderRadius: '5px',
+              background: '#333',
+              color: '#fff',
+            },
+          });
         } else if (!error.response.data.user) {
           console.error('Login error: User data not returned from the server');
         }
@@ -42,6 +60,7 @@ const LoginForm = () => {
 
   return (
     <div>
+      <Toaster position="top-right" />
       <Formik
         initialValues={{
           email: '',
