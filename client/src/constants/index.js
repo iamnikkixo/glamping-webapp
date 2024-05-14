@@ -523,6 +523,6 @@ export const socials = [
   {
     id: '5',
     icon: 'fab fa-github',
-    href: 'http://www.github.com',
+    href: 'https://github.com/iamnikkixo',
   },
 ];
