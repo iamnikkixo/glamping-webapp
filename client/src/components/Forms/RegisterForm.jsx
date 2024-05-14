@@ -6,7 +6,7 @@ import { useModal } from '../../utils/ModalContext';
 import FacebookOAuth from '../auth/FacebookOAuth';
 import GoogleOAuth from '../auth/GoogleOAuth';
 import axios from 'axios';
-
+import { ToastContainer, toast } from 'react-toastify';
 const server = import.meta.env.VITE_BASE_URL;
 
 const RegisterForm = () => {
@@ -25,12 +25,26 @@ const RegisterForm = () => {
       if (error.response && error.response.status === 409) {
         setFieldError('email', error.response.data.message);
       }
+      toast.error('Registration failed!');
       setIsSubmitting(false);
     }
   };
 
   return (
     <div>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+        transition:Bounce
+      />
       <Formik
         initialValues={{
           email: '',

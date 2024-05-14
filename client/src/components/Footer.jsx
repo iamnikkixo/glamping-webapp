@@ -9,14 +9,14 @@ const Footer = () => {
 
   return (
     <footer className="font-poppins text-white pt-10">
-      <Section backgroundImage={FooterBackground} className="w-full px-7 py-16">
+      <Section backgroundImage={FooterBackground} className="w-full px-7 py-10 xl:py-10">
         <div className="container relative">
           <div className="flex flex-col">
             <div className="flex flex-col  md:flex-row md:gap-[5rem] lg:gap-[10rem] ">
               <div>
                 <a href="#hero" className="flex items-center mb-4">
-                  <img src={Logo} className="w-24 " alt="Logo" />
-                  <h1 className="inline-block ml-2 font-poppins text-white text-3xl font-semibold">
+                  <img src={Logo} className="w-16 md:w-24 " alt="Logo" />
+                  <h1 className="inline-block ml-2 font-poppins text-white text-2xl md:text-3xl font-semibold">
                     Starlight Haven
                   </h1>
                 </a>

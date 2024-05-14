@@ -520,4 +520,9 @@ export const socials = [
     icon: 'fab fa-twitter',
     href: 'http://www.twitter.com',
   },
+  {
+    id: '5',
+    icon: 'fab fa-github',
+    href: 'http://www.github.com',
+  },
 ];

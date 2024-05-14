@@ -10,6 +10,7 @@ import RegisterForm from './Forms/RegisterForm';
 import LoginForm from './Forms/LoginForm';
 import { useModal } from '../utils/ModalContext';
 import { useAuth } from '../utils/AuthContext';
+import { Tooltip } from 'react-tooltip';
 
 const server = import.meta.env.VITE_BASE_URL;
 
@@ -89,10 +90,16 @@ const Header = () => {
                 onClick={handleLogout}
               />
             ) : (
-              <i
-                className="fas fa-user bg-white rounded-full px-3 py-[6px] text-indigo-600 text-lg cursor-pointer hidden lg:flex ml-[85px] "
-                onClick={handleLogout}
-              />
+              <>
+                <i
+                  className="fas fa-user bg-white rounded-full px-3 py-[6px] text-indigo-600 text-lg cursor-pointer hidden lg:flex ml-[85px] "
+                  data-tooltip-id="logout-tooltip"
+                  data-tooltip-content="Logout"
+                  data-tooltip-place="bottom"
+                  onClick={handleLogout}
+                />
+                <Tooltip id="logout-tooltip" />
+              </>
             )
           ) : (
             <>

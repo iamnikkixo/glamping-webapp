@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import Hero from './components/Hero';
 import About from './components/About';
 import Accomodation from './components/Accomodation/Accomodation';
