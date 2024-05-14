@@ -11,6 +11,7 @@ import LoginForm from './Forms/LoginForm';
 import { useModal } from '../utils/ModalContext';
 import { useAuth } from '../utils/AuthContext';
 import { Tooltip } from 'react-tooltip';
+import toast, { Toaster } from 'react-hot-toast';
 
 const server = import.meta.env.VITE_BASE_URL;
 
@@ -39,11 +40,21 @@ const Header = () => {
 
   const handleLogout = () => {
     logout();
-    window.location.href = `${server}/api/users/logout`;
+    toast.success('Logout Successfully!', {
+      style: {
+        borderRadius: '5px',
+        background: '#333',
+        color: '#fff',
+      },
+    });
+    setTimeout(() => {
+      window.location.href = `${server}/api/users/logout`;
+    }, 1000);
   };
 
   return (
     <>
+      <Toaster position="top-right" />
       <div
         className={`absolute top-0 left-0 w-full z-50  ${
           openNavigation ? 'bg-gray-900' : 'bg-none'
