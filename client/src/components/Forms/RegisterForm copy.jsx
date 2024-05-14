@@ -19,36 +19,21 @@ const RegisterForm = () => {
     try {
       const response = await axios.post(`${server}/api/users/register`, values);
       resetForm();
+      toggleModal('registerModal');
       setIsSubmitting(false);
-      toast.success('Registered Successfully! Please Sign In', {
-        style: {
-          borderRadius: '5px',
-          background: '#333',
-          color: '#fff',
-        },
-      });
-      setTimeout(() => {
-        toggleModal('registerModal');
-      }, 1000);
+      toast('Testing toast');
       return response.data;
     } catch (error) {
       if (error.response && error.response.status === 409) {
         setFieldError('email', error.response.data.message);
       }
       setIsSubmitting(false);
-      toast.error(error.response.data.message,  {
-        style: {
-          borderRadius: '5px',
-          background: '#333',
-          color: '#fff',
-        },
-      });
     }
   };
 
   return (
     <div>
-      <Toaster position="top-right" />
+      <Toaster />
       <Formik
         initialValues={{
           email: '',
