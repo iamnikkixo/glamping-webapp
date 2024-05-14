@@ -150,7 +150,11 @@ const Header = () => {
       <FormModal title="Welcome Back" size="max-w-lg" modalName="loginModal">
         <LoginForm />
       </FormModal>
-      <FormModal title="Terms of Use" size="max-w-5xl" modalName="termsOfUse">
+      <FormModal
+        title="Terms and Conditions"
+        size="max-w-5xl"
+        modalName="termsAndConditions"
+      >
         <TermsConditions />
       </FormModal>
     </>

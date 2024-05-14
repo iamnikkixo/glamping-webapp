@@ -171,7 +171,10 @@ const ReserveForm = () => {
                   />
                 </label>
                 <span
-                  onClick={() => toggleModal('reserveModal', null)}
+                  onClick={() => (
+                    toggleModal('reserveModal'),
+                    toggleModal('termsAndConditions')
+                  )}
                   className="hover:text-orange-500 hover:cursor-pointer hover:font-semibold"
                 >
                   Accept Terms & Conditions

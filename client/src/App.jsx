@@ -10,7 +10,7 @@ import { ModalProvider } from './utils/ModalContext';
 import { AuthProvider } from './utils/AuthContext';
 import FormModal from './components/Forms/FormModal';
 import ReserveForm from './components/Forms/ReserveForm';
-
+import TermsConditions from './components/Forms/TermsConditions';
 
 function App() {
   return (
@@ -28,6 +28,13 @@ function App() {
         <Footer />
         <FormModal title="Reserve Your Tent" modalName="reserveModal">
           <ReserveForm />
+        </FormModal>
+        <FormModal
+          title="Terms and Conditions"
+          size="max-w-5xl"
+          modalName="termsAndConditions"
+        >
+          <TermsConditions />
         </FormModal>
       </ModalProvider>
     </AuthProvider>

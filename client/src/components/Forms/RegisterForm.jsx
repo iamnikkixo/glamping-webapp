@@ -93,7 +93,8 @@ const RegisterForm = () => {
                   you agree to Starlight Haven’s{' '}
                   <span
                     onClick={() => (
-                      toggleModal('registerModal'), toggleModal('termsOfUse')
+                      toggleModal('registerModal'),
+                      toggleModal('termsAndConditions')
                     )}
                     className="text-orange-500 font-semibold hover:cursor-pointer"
                   >

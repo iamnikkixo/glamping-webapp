@@ -1,8 +1,10 @@
 import { termsAndConditions } from '../../constants/index';
 import { useModal } from '../../utils/ModalContext';
+import { useAuth } from '../../utils/AuthContext';
 
 const TermsConditions = () => {
   const { toggleModal } = useModal();
+  const { isAuthenticated } = useAuth();
 
   return (
     <div className="text-xs">
@@ -21,9 +23,15 @@ const TermsConditions = () => {
       </ol>
       <div className="flex justify-end">
         <button
-          onClick={() => (
-            toggleModal('termsOfUse'), toggleModal('registerModal')
-          )}
+          onClick={() => {
+            if (isAuthenticated) {
+              toggleModal('termsAndConditions');
+              toggleModal('reserveModal');
+            } else {
+              toggleModal('termsAndConditions');
+              toggleModal('registerModal');
+            }
+          }}
           className="flex text-center border-2 text-sm font-medium py-2 px-8 rounded-xl bg-gradient-to-tr from-indigo-800 to-indigo-900 text-white transition ease-in-out delay-50 hover:-translate-y-1 hover:scale-105 justify-center"
         >
           I agree
