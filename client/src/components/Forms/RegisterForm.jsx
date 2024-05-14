@@ -29,14 +29,14 @@ const RegisterForm = () => {
       });
       setTimeout(() => {
         toggleModal('registerModal');
-      }, 1000);
+      }, 950);
       return response.data;
     } catch (error) {
       if (error.response && error.response.status === 409) {
         setFieldError('email', error.response.data.message);
       }
       setIsSubmitting(false);
-      toast.error(error.response.data.message,  {
+      toast.error(error.response.data.message, {
         style: {
           borderRadius: '5px',
           background: '#333',

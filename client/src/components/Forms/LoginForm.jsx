@@ -32,7 +32,7 @@ const LoginForm = () => {
       });
       setTimeout(() => {
         toggleModal('loginModal');
-      }, 1000);
+      }, 950);
 
       return response.data;
     } catch (error) {
