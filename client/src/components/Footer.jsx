@@ -8,8 +8,11 @@ const Footer = () => {
   const pathname = useLocation();
 
   return (
-    <footer className="font-poppins text-white pt-10">
-      <Section backgroundImage={FooterBackground} className="w-full px-7 py-10 xl:py-10">
+    <footer id="footer" className="font-poppins text-white pt-10">
+      <Section
+        backgroundImage={FooterBackground}
+        className="w-full px-7 py-10 xl:py-10"
+      >
         <div className="container relative">
           <div className="flex flex-col">
             <div className="flex flex-col  md:flex-row md:gap-[5rem] lg:gap-[10rem] ">

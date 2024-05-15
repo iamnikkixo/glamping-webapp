@@ -11,6 +11,7 @@ import { AuthProvider } from './utils/AuthContext';
 import FormModal from './components/Forms/FormModal';
 import ReserveForm from './components/Forms/ReserveForm';
 import TermsConditions from './components/Forms/TermsConditions';
+import FAB from './components/FAB';
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         >
           <TermsConditions />
         </FormModal>
+        <FAB />
       </ModalProvider>
     </AuthProvider>
   );
